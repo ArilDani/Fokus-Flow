@@ -32,3 +32,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Private / non‑publishable files
+.env.local
+.env.production
+.env.development
+.env.test
+.env.production.local
+.env.development.local
+.npmrc
+.yarnrc
+.yarnrc.yml
+.next
+.cache
+coverage
+*.key
+*.pem

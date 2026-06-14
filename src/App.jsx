@@ -1,26 +1,21 @@
+import { Routes, Route } from 'react-router-dom'
+import LandingPage from './pages/LandingPage'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import AdminDashboard from './pages/AdminDashboard'
+import UserDashboard from './pages/UserDashboard'
+import FocusMode from './pages/FocusMode'
 import './index.css'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import HowItWorks from './components/HowItWorks'
-import Testimonials from './components/Testimonials'
-import Pricing from './components/Pricing'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <HowItWorks />
-        <Testimonials />
-        <Pricing />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/admin-dashboard" element={<AdminDashboard />} />
+      <Route path="/dashboard" element={<UserDashboard />} />
+      <Route path="/focus" element={<FocusMode />} />
+    </Routes>
   )
 }

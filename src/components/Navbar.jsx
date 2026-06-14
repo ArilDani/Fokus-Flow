@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useStore } from '../store/useStore'
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home', sectionId: 'home' },
@@ -12,6 +14,8 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const navigate = useNavigate()
+  const user = useStore((state) => state.user)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -70,8 +74,19 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="navbar__actions">
-          <button className="btn btn-outline" id="navbar-login-btn" onClick={() => alert('🚀 COMING SOON')}>Login</button>
-          <button className="btn btn-primary" id="navbar-signup-btn" onClick={() => alert('🚀 COMING SOON')}>Sign Up</button>
+          {user ? (
+            <button 
+              className="btn btn-primary" 
+              onClick={() => navigate(user.role === 'admin' ? '/admin-dashboard' : '/dashboard')}
+            >
+              Dashboard
+            </button>
+          ) : (
+            <>
+              <button className="btn btn-outline" onClick={() => navigate('/login')}>Login</button>
+              <button className="btn btn-primary" onClick={() => navigate('/register')}>Sign Up</button>
+            </>
+          )}
         </div>
       </div>
     </header>
